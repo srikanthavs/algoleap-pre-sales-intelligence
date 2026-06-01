@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+export const dynamic = "force-dynamic";
 
 const SYSTEM_PROMPT = `You are an expert B2B pre-sales researcher for Algoleap, an AI consulting firm specializing in supply chain AI solutions.
 
@@ -15,6 +15,7 @@ Research style:
 - No markdown formatting, no em dashes, no emoji`;
 
 export async function POST(req: NextRequest) {
+  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   try {
     const { company, department, stakeholder, context } = await req.json();
 
